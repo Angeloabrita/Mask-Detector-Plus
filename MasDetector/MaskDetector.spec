@@ -1,5 +1,5 @@
 # -*- mode: python ; coding: utf-8 -*-
-
+#PyInstaller MaskDetector.spec
 block_cipher = None
 from kivy_deps import sdl2, glew, gstreamer
 
