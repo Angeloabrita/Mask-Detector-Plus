@@ -14,7 +14,7 @@ Mask Detector is an app that uses deep learning to detect faces using masks or n
 ## Installation
 
 ### Only User ![Windows build](https://img.shields.io/badge/Windows%20build-sucess-green)
-#### If you want only use the app download the installer [here](https://pip.pypa.io/en/stable/).
+## If you want only use the app download the installer [here](https://github.com/Angeloabrita/Mask-Detector-Plus/releases/download/0.0.9/Mask.Detector.Plus.Setup.exe).
 
 ### Jedi
 
@@ -41,7 +41,7 @@ To use only execute the main.Py
 python MaskDetector/Main.py
 ```
 ## Danations
-I know, these are hard days but if you can collaborate you can buy me a coffee or a beer. it'll give me a up in my creative process Donate paypal
+I know, these are hard days but if you can collaborate you can buy me a coffee or a beer. it'll give me a up in my creative process Donate in [PayPal](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=NTVK3A8XG54W2&source=url)
 
 ## Social networks 
 - [Twitter](https://twitter.com/AGTAStudios)
