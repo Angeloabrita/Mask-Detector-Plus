@@ -1,0 +1,230 @@
+#:kivy 1.11.1
+
+#--root screen Manager
+GridLayout:
+    cols: 1
+    ScreenManager:
+        id:manager
+
+        Main:
+            name: "main"
+            id:main
+            
+        Config:
+            name:'config'
+            id:config
+        Credits:
+            name:'credits'
+            id:credits
+#---main screen layout
+<Main>:
+
+    ActionBar:
+        size_hint: (1, None)
+        height: 30
+        pos_hint: {'top':1}
+        ActionView:
+            use_separator: True
+            ActionPrevious:
+                title: 'Mask detector'
+                with_previous: False
+                app_icon:''
+            ActionOverflow:
+          
+            ActionGroup:
+                text: 'File'
+                ActionButton:
+                    text: 'Config'
+                    on_press: 
+                        app.root.ids['manager'].transition.direction = 'left'
+                        app.root.ids['manager'].current = 'config'
+                ActionButton:
+                    text: 'Credits'
+                    on_press: 
+                        app.root.ids['manager'].transition.direction = 'left'
+                        app.root.ids['manager'].current = 'credits'
+                ActionButton:
+                    text: 'Exit app'
+                    on_press: app.stop() 
+    
+    BoxLayout:
+
+        orientation:'vertical'
+        size: root.width, root.height 
+        BoxLayout:
+            orientation:'horizontal'
+            size_hint: (1, None)
+            height: 100
+            Label:
+                text: 'MASK DETECTOR'
+                bold: True
+                color: [1,2,1,1]
+                size_hint: (1, None)
+                height: 100
+            Label:
+                id:lgAndDate
+                text:'00' #root.lgAndDate
+                bold: True
+                color: [1,3,1,1]
+                size_hint: (1, None)
+                height: 100
+        Label:
+            id:now
+            text:'Wating...'
+            bold: True
+            color: [1,3,1,1]
+            size_hint: (1, None)
+            height: 20
+        GridLayout:
+            cols:2
+            size: root.width, root.height
+            padding: 10
+            
+            GridLayout:
+                cols:2
+                size: root.width, root.height
+                padding: 10
+                Label:
+                    id:noMask
+                    text: 'peaple without mask'
+                    font_size:18
+                    bold: True
+                    color: [1,0,0,1]
+                    # size_hint: (1, None)
+                    # height: 30
+                Label:
+                    id:withMask
+                    text: 'Peaple with mask'
+                    font_size:18
+                    bold: True
+                    color: [0,1,0,1]
+                    # size_hint: (1, None)
+                    # height: 30
+                
+                Label:
+                    id:nowNoMask
+                    text: 'people without mask now'
+                    font_size:18
+                    bold: True
+                    color: [1,0,0,1]
+                    # size_hint: (1, None)
+                    # height: 30   # height: 30
+                Label:
+                    id:nowWithMask
+                    text: 'People with mask now'
+                    font_size:18
+                    bold: True
+                    color: [0,1,0,1]
+                    # size_hint: (1, None)
+                # ToggleButton:
+                #     text:'Play/Pause'
+                #     on_press:camera.play = not camera.play
+                #     size_hint: (1, None)
+                #     height: 60
+
+            CameraCv:
+                id: camera  
+                resolution: (640,480) 
+                size_hint: (1, None)
+                height: 350     
+          
+        BoxLayout:
+            orientation:'horizontal'      
+        
+            Button:
+                text:"Export data"            
+                on_press: root.export2Exel()        
+                size_hint: (1, None)
+                height: 70
+            Button:
+                text:"plots"            
+                on_press: root.plot_data()                       
+                size_hint: (1, None)
+                height: 70
+            Button:
+                text:"Mask infraction pics detected"            
+                on_press: root.open_mask_infraction_folder()                      
+                size_hint: (1, None)
+                height: 70
+        Button:
+            text: "It is free! but you can pay me a coffee it if you like"
+            bold: True
+            on_press:root.openURL("https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=NTVK3A8XG54W2&source=url")
+            background_normal: ''
+            background_color: .1, .3, .4, .85
+            size_hint: (1, None)
+            height: 30
+            
+#----config screen layout
+<Config>:
+    Label:
+        text:'Configuration'
+        font_size:18
+        bold: True
+        halign: 'center'
+        valign: 'middle'
+        pos_hint: {'top':1}
+
+    BoxLayout:
+        orientation: 'horizontal'
+        padding: 30
+        size_hint: 1, .4
+        pos_hint: {'y': .3}
+        Label:
+            text: 'Reset all database on this app?'
+            size_hint: (1, None)
+            height: 70
+        Button:
+            text:'Reset database?'
+            on_press:root.del_data()
+            size_hint: (1, None)
+            height: 70
+    Button:
+        text:'Back to App'       
+        on_press:
+            app.root.ids['manager'].transition.direction = 'right'
+            app.root.ids['manager'].current = 'main'
+        size_hint: (1, None)
+        height: 70
+                
+##-credts screen
+<Credits>:
+    BoxLayout:
+        orientation:'vertical'
+        Label:
+            text:"First of all, i'll thank Stack Overflow and Google for existing \n So I also thank the Adrian from the Py Image Search (https://www.pyimagesearch.com) for the basic tutorial \n used in the core of this application"
+            font_size:18
+            bold: True
+            halign: 'center'
+            valign: 'middle'
+
+        Label:
+            text:'It is free! but you can pay me a coffee it if you like'
+            font_size:18
+            bold: True
+
+        Button:
+            text:'Donate and pay a coffee for the poor developer'
+            on_press: app.root.ids['main'].openURL('https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=NTVK3A8XG54W2&source=url')
+        BoxLayout:
+            orientation:'horizontal'
+            Button:
+                text:'My Facebook page'
+                on_press: app.root.ids['main'].openURL('https://www.facebook.com/agtastudios')
+                    
+                size_hint: (1, None)
+                height: 70
+            Button:
+                text:'My Twitter page'
+                on_press: app.root.ids['main'].openURL('https://twitter.com/AGTAStudios')
+                    
+                size_hint: (1, None)
+                height: 70
+            Button:
+                text:'Back'
+                on_press: 
+                    app.root.ids['manager'].transition.direction = 'right'
+                    app.root.ids['manager'].current = 'main'
+                    
+                size_hint: (1, None)
+                height: 70
