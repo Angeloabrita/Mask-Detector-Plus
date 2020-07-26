@@ -1,6 +1,8 @@
 # Mask Detector plus
 Mask Detector is an app that uses deep learning to detect faces using masks or not using a WebCam.
 
+![MaskDetectorPlus](https://github.com/Angeloabrita/Mask-Detector-Plus/blob/master/MDP.gif)
+
 ### You can also do with the app:
 | Features | Description |
 | ------ | ------ |
